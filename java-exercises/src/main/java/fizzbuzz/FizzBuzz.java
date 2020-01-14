@@ -1,5 +1,8 @@
 package fizzbuzz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *  Write a program that prints the numbers from 1 to 100. But for multiples of three print "Fizz" instead of the
  *  number and for the multiples of five print "Buzz".
@@ -7,25 +10,33 @@ package fizzbuzz;
  */
 public class FizzBuzz {
 
-    public static void main(String[] args) {
+    static List<String> fizzBuzz(int numIterations) {
 
-        for (int i = 1; i <= 100; i++) {
+        List<String> output = new ArrayList<>();
+        for (int i = 1; i <= numIterations; i++) {
 
-            String output = "";
+            String outputLn = "";
 
             if (i % 3 == 0) {
-                output = "Fizz";
+                outputLn = "Fizz";
             }
 
             if (i % 5 == 0) {
-                output += "Buzz";
+                outputLn += "Buzz";
             }
 
-            if (output.length() == 0) {
-                output += i;
+            if (outputLn.length() == 0) {
+                outputLn += i;
             }
 
-            System.out.println(output);
+            System.out.println(outputLn);
+            output.add(outputLn);
         }
+
+        return output;
+    }
+
+    public static void main(String[] args) {
+        fizzBuzz(100);
     }
 }
