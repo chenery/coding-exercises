@@ -3,13 +3,17 @@ package TestDome.binarysearchtree;
 /**
  *
  */
-public class Node {
-    public int value;
-    public Node left, right;
+class Node {
+    int key;
+    Node left, right;
 
-    public Node(int value, Node left, Node right) {
-        this.value = value;
+    Node(int key, Node left, Node right) {
+        this.key = key;
         this.left = left;
         this.right = right;
+    }
+
+    static Node node(int key) {
+        return new Node(key, null, null);
     }
 }

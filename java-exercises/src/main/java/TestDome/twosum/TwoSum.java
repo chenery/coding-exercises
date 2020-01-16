@@ -28,7 +28,7 @@ public class TwoSum {
         Map<Integer, Integer> valueMap = new HashMap<Integer, Integer>();
         for (int i = 0; i < list.length; i++) {
             int element = list[i];
-            // ignore the value if it's greater than our sum
+            // ignore the key if it's greater than our sum
             if (element <= sum) {
                 valueMap.put(element, i);
             }
@@ -41,7 +41,7 @@ public class TwoSum {
             // skip negative values, they break this logic
             if (requiredValue > 0 && valueMap.containsKey(requiredValue)) {
                 int indexOfRequiredValue = valueMap.get(requiredValue);
-                // we found a corresponding value to make the sum -> return the indices
+                // we found a corresponding key to make the sum -> return the indices
                 return new int[] {indexOfRequiredValue, j};
             }
         }

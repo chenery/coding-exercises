@@ -6,8 +6,8 @@ package TestDome.userinput;
 
  Implement the class TextInput that contains:
 
- Public method void add(char c) - adds the given character to the current value
- Public method String getValue() - returns the current value
+ Public method void add(char c) - adds the given character to the current key
+ Public method String getValue() - returns the current key
  Implement the class NumericInput that:
 
  Inherits from TextInput
