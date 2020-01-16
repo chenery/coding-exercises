@@ -1,4 +1,4 @@
-package TestDome.binarysearchtree;
+package trees.binarysearchtree;
 
 /**
  * A Tree with key of type T - no associated key is associated with the key

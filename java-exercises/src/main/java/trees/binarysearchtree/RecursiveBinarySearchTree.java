@@ -1,4 +1,4 @@
-package TestDome.binarysearchtree;
+package trees.binarysearchtree;
 
 /**
  *  Binary search tree (BST) is a binary tree where the key of each node is larger or equal to the values in all the

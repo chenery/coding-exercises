@@ -1,4 +1,4 @@
-package TestDome.binarysearchtree;
+package trees.binarysearchtree;
 
 /**
  *
