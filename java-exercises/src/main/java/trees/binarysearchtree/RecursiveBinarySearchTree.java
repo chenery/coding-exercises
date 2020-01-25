@@ -14,6 +14,7 @@ package trees.binarysearchtree;
  Call to contains(n2, 3) should return true since a tree with root at n2 contains number 3.
 
  refer to https://en.wikipedia.org/wiki/Binary_search_tree
+ https://en.wikipedia.org/wiki/Binary_search_algorithm
  */
 
 public class RecursiveBinarySearchTree implements BinarySearchTree<Integer> {
