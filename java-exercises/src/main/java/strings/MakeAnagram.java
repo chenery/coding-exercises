@@ -23,6 +23,7 @@ public class MakeAnagram {
 
         // map frequency of each char
         int[] aFreq = new int[26], bFreq = new int[26];
+        int numDeletions = 0;
 
         for(int i = 0; i < a.length(); i++) {
             int index = a.charAt(i) - 'a';
@@ -34,12 +35,8 @@ public class MakeAnagram {
             bFreq[index] = bFreq[index] + 1;
         }
 
-
-        int numDeletions = 0;
         for (int i = 0; i < 26; i++) {
-            int aFreqForC = aFreq[i];
-            int bFreqForC = bFreq[i];
-            numDeletions = numDeletions + Math.abs(aFreqForC - bFreqForC);
+            numDeletions += Math.abs(aFreq[i] - bFreq[i]);
         }
 
         return numDeletions;
