@@ -53,4 +53,57 @@ public class RecursiveBinarySearchTreeTest {
 
         // todo how to assert the node is created in the correct place?
     }
+
+    @Test
+    public void height_threeNodeTree() {
+        BinarySearchTree<Integer> tree = new RecursiveBinarySearchTree();
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(3);
+        assertThat(tree.height()).isEqualTo(1);
+    }
+
+    @Test
+    public void height_root() {
+        BinarySearchTree<Integer> tree = new RecursiveBinarySearchTree();
+        tree.insert(3);
+        assertThat(tree.height()).isEqualTo(0);
+    }
+
+    @Test
+    public void height_fiveTree() {
+        BinarySearchTree<Integer> tree = new RecursiveBinarySearchTree();
+        tree.insert(3);
+        tree.insert(1);
+        tree.insert(7);
+        tree.insert(5);
+        tree.insert(4);
+        assertThat(tree.height()).isEqualTo(3);
+    }
+
+    @Test
+    public void height_sevenTree() {
+        BinarySearchTree<Integer> tree = new RecursiveBinarySearchTree();
+        tree.insert(3);
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(5);
+        tree.insert(4);
+        tree.insert(6);
+        tree.insert(7);
+        assertThat(tree.height()).isEqualTo(3);
+    }
+
+    @Test
+    public void height_sevenTree_diff_order() {
+        BinarySearchTree<Integer> tree = new RecursiveBinarySearchTree();
+        tree.insert(3);
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(4);
+        tree.insert(6);
+        tree.insert(7);
+        assertThat(tree.height()).isEqualTo(3);
+    }
 }

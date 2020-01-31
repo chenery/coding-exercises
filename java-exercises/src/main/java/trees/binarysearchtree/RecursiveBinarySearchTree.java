@@ -58,6 +58,29 @@ public class RecursiveBinarySearchTree implements BinarySearchTree<Integer> {
         return containsAt(this.root, key);
     }
 
+    /**
+     * Performance: O(n), as the depth first search
+     */
+    @Override
+    public int height() {
+        return heightAt(this.root) - 1;
+    }
+
+    /**
+     * @param currentNode is the search
+     * @return the depth from currentNode the deepest point (leaf)
+     */
+    private int heightAt(Node currentNode) {
+
+        if (currentNode == null) {
+            return 0;
+        }
+
+        int leftHeight = heightAt(currentNode.left);
+        int rightHeight = heightAt(currentNode.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
     private boolean containsAt(Node currentNode, Integer key) {
         if (currentNode == null) {
             return false;

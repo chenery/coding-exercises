@@ -25,4 +25,11 @@ public interface BinarySearchTree<T> {
      * @return true if key is found in the tree
      */
     boolean contains(T key);
+
+    /**
+     * The number of edges between the node and the deepest leaf node.
+     * The height of a single node tree is zero.
+     * @return The maximum depth of the tree
+     */
+    int height();
 }

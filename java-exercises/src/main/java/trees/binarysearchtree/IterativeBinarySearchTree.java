@@ -66,4 +66,9 @@ public class IterativeBinarySearchTree implements BinarySearchTree<Integer> {
 
         return false;
     }
+
+    @Override
+    public int height() {
+        return 0;
+    }
 }
