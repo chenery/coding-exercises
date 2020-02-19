@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.commonsubstring;
 
 import java.util.HashSet;
 import java.util.Set;
