@@ -167,12 +167,202 @@ Java:
 - remove(Object): O(n)
 - peek(): O(1)
 
-# Hash & Maps
+# Hashtable
 
-# Sorting Algorithms
+- An associative array or map
+- Load factor = n / k, where n = number of occupied entries, k is the number of buckets. 
+HashMap in Java 10 is 0.75 at which point the array might be resized to increase k.
+- Collision resolution typically done using **separate chaining** with linked lists. In which can worse case is then O(n). 
+Hashtable would then inherit issues with list. 
+To improve the worst case O(n) to O(log n) a **self balancing binary search** tree might be used instead. E.g. HashMap in Java 8.
+- Collision resolution also done with open addressing, which is when in the case of a collision, another slot/bucket is chosen 
+based on another algorithm, (e.g. linear probing) - this is a simpler implementation and can work well for small records and
+smaller load factors.
+- Dynamic Resizing - how the table can grow or shrink based on load factor. Usually resizing required re-hashing all the keys
+which can be expensive. So some implementations can incrementally resize by maintaining the old and new table until all the keys
+are moved to the new one.
+- Hash tables can be distributed (**DHT**) - the hashing function locates the entry on a particular node on a network.
+DHTs have systems for adding and removing nodes such that not all the nodes will need to be rehashed. E.g. Having a logical
+ring of nodes, each responsible for a range of the keyspace. Inserting a node between 2 others means only 2 or the total 
+nodes have to redistribute their keys. E.g. Apache Cassandra. 
+
+Java:
+
+- HashMap<K,V> implements Map<K,V> 
+- LinkedHashMap<K,V> extends HashMap<K,V> -> maintains a doubly linked list for ordering.
+- HashSet<E> implements Set<E> - backed by a HashMap
+- LinkedHashSet<E> - backed by a LinkedHashMap
+
+Operations:
+
+- get(key): O(1)
+- set(key, value): O(1)
+- add(key, value)/remove(key): O(1) average, O(n) worse case
 
 # Trees
+
+## Binary Trees
+
+### Traversal
+Given a tree:
+     1
+    /  \
+   2    3
+  / \  / \
+ 4  5 6   7
+ 
+#### Inorder traversal:
+- visit left subtree
+- visit root
+- visit right subtree
+
+Output: 4, 2, 5, 1, 6, 3, 7
+
+- For BST produces non-decreasing output
+
+#### Preorder traversal:
+- visit root
+- visit left subtree
+- visit right subtree
+
+Output: 1, 2, 4, 5, 3, 6, 7
+
+- For getting the prefix/polish order of the tree (e.g. Expression trees)
+- Used to copy the tree
+
+#### Postorder traversal:
+- visit left subtree
+- visit right subtree
+- visit root
+
+Output: 4, 5, 2, 6, 7, 3, 1
+
+- For getting the postfix/reverse polish order of the tree
+- For deleting a tree, from the leaf nodes
+ 
+### Binary Search Tree (Ordered binary trees)
+
+[https://en.wikipedia.org/wiki/Binary_search_tree]
+
+- Ordered based on the fact the left node is less than the parent, and the right node is more.
+- Can build sets and maps from BSTs
+- Search & Insert & Delete: O(log n) Average, O(n) worse case
+- Space O(n)
+- Typically HashTable is faster, BST is better is you want keys in order, 
+e.g. range queries, lowest common ancestor, anything needing traversals, sorting
+
+Search Recursively:
+```java
+class RecursiveSearch {
+    Node search(Node node, String key) {
+        if (node == null || node.key == key) {
+            return node;
+        } else if (node.key < key) {
+            return search(node.left, key);
+        } else {
+            return search(node.right, key);
+        }
+    }
+}
+```
+
+Search Iteratively
+```java
+class IterativeSearch {
+    Node search(Node root, String key) {
+        Node current = root;
+        while (current != null) {
+            if (current.key == key) {
+                return current;
+            } else if (current.key < key) {
+                current = node.left;
+            } else {
+                current = node.right;
+            }
+        }
+        return current;
+    }
+}
+```
+
+Insert Recursively: insert at first free node
+```java
+class RecursiveInsert {
+    Node insert(Node node, String key, String value) {
+        // return the root of the tree
+        return insertAt(node, key, value);
+    }
+    
+    Node insertAt(Node node, String key, String value) {
+        if (node == null) {
+            return new Node(key, value);
+        } else if (node.key < value) {
+            node.left = insertAt(node.left, key, value);
+        } else {
+            node.right = insertAt(node.right, key, value);
+        }
+        return node;
+    }
+}
+```
+
+Insert Iteratively: in Java requires a trailing pointer
+```java
+class IterativeInsert {
+    Node insert(Node node, String key, String value) {
+        Node newNode = new Node(key, value);
+        Node current = node;
+        Node previous = null;
+        
+        while (current != null) {
+            previous = current;
+            if (current.key < key) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+        
+        // New root
+        if (previous == null) {
+            return newNode;
+        }
+        
+        if (key < previous.key) {
+            previous.left = newNode;
+        } else {
+            previous.right = newNode;
+        }
+        // Return the parent of the new node
+        return previous;
+    }
+}
+```
+
+Deletion:
+
+## Searching e.g. Binary search
+
+### AVL Tree (A self balancing BST) 
+### Red-black tree (A self balancing BST)
+
+## Search Trees
+
+## B Tree
+## Tries
+
+## K-ary Trees
+
+# Sorting Algorithms
 
 # Graphs (BFS & DFS)
 
 # Recursion
+
+# Extras
+[https://stackoverflow.com/questions/15301885/calculate-value-of-n-choose-k]
+```
+function choose(n, k)
+    if k == 0 return 1
+    return (n * choose(n - 1, k - 1)) / k
+```
